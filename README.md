@@ -8,8 +8,7 @@
 - Export your following list on Twitter to TXT, CSV, HTML formats in case your Twitter/X account is suspended with no cost :)
 - Easy to use and update the following list.
 - Easy to keep track in case your following changes username or is suspended
-
- <img width="701" alt="SCR-20231229-cuny" src="https://github.com/royspace/twitter-following-list-exporter/assets/85507215/f6ad7280-870f-4b03-aded-ec7c11b36ae2">
+<img width="701" alt="293262295-f6ad7280-870f-4b03-aded-ec7c11b36ae2" src="https://github.com/royspace/twitter-following-list-exporter/assets/85507215/d05e95c0-955b-47f1-8652-b98d6b74b33a">
 
 ## Requirements
 
@@ -59,10 +58,11 @@
      }
      ```
 
-6. Export to CSV and HTML file
+6. Export to TXT, CSV and HTML file
 - Fill `YourUsername`
 
      ```bash
+     gallery-dl -g https://twitter.com/YourUsername/following > twitter_following_list.txt
      gallery-dl --get-urls -g https://twitter.com/YourUsername/following > twitter_following_list_converted.txt
      python3 twitter-following-list-exporter.py
      python3 twitter-following-list-exporter-html.py
@@ -71,7 +71,8 @@
 - File will include:
 
 `Target_Url` | `Permanent_Profile_Link` |	`date` | `description` | `favourites_count` | `followers_count` | `friends_count` | `id` | `listed_count` | `location` | `media_count` | `name` | `nick` | `profile_banner` | `profile_image` | `statuses_count` | `url` | `verified`
-![image](https://github.com/royspace/twitter-following-list-exporter/assets/85507215/65c62b17-f7f1-41b5-a36e-90f069fe98cf)
+![291020178-65c62b17-f7f1-41b5-a36e-90f069fe98cf](https://github.com/royspace/twitter-following-list-exporter/assets/85507215/20323926-56a4-4204-8444-c260d27c9954)
+
 
 ## Note
 - There may be failed URLs at the moment, copy and paste them to CSV file to avoid showing them next time.
