@@ -1,0 +1,44 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#main_table {
+    padding-top: 8px;
+}
+
+th, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.profile_image {
+}
+
+.profile_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.profile_banner {
+    min-width: 400px;
+}
+
+.profile_banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.description {
+    max-height: 100px;
+    min-width: 500px;
+    font-size: small;
+}
+
+a {
+    text-decoration: none;
+    color: darkgreen;
+    font: 500;
+}
