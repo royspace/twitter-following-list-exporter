@@ -170,11 +170,13 @@ h1 {
 .friends_count:after {
     content: " Following";
     color: gray; /* Set the color for the "Followers" text */
+    font-weight: normal;
 }
 
 .followers_count:after {
     content: " Followers";
     color: gray; /* Set the color for the "Followers" text */
+    font-weight: normal;
 }
 
 .post  {
