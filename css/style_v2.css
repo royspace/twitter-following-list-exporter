@@ -137,24 +137,44 @@ h1 {
     color: gray;
     margin-top: 0 !important;
 }
+.date_line {
+    display: inline-block;
+    color: gray;
+}
+
+.date {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
 
 .date_icon {
-    width: 24px;
-    height: 24px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
     vertical-align: middle;
     text-align: left;
-    float: left;
     color: whitesmoke;
-    margin-right: 7px;
+    margin-right: 0px;
 }
 
 .date_icon path {
-    fill: whitesmoke;
+    fill: gray;
 }
 
 .fl {
     display: flex;
     gap: 20px;
+}
+
+.friends_count:after {
+    content: " Following";
+    color: gray; /* Set the color for the "Followers" text */
+}
+
+.followers_count:after {
+    content: " Followers";
+    color: gray; /* Set the color for the "Followers" text */
 }
 
 .post  {

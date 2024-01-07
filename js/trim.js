@@ -15,3 +15,17 @@
             $(this).text(username);
         });
     });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var elementsToConvert = document.getElementsByClassName('friends_count');
+    
+        // Iterate through each element with the 'friends_count' class
+        for (var i = 0; i < elementsToConvert.length; i++) {
+            var element = elementsToConvert[i];
+    
+            // Parse the existing content, remove commas, convert to integer, and format with commas
+            var value = parseInt(element.innerText.replace(/,/g, ''), 10);
+            element.innerText = value.toLocaleString();
+        }
+    });
+    
