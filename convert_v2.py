@@ -31,13 +31,17 @@ template = env.get_template('template_v2.html')
 # Variables to store downloaded image IDs
 downloaded_image_ids = set()
 
-# Read CSV data
+# Read CSV data in reverse order
 csv_data = []
 with open(csv_file, 'r', encoding='utf-8') as file:
     csv_reader = csv.DictReader(file)
     total_rows = sum(1 for _ in csv_reader)  # Count total rows for tqdm
     file.seek(0)  # Reset file pointer
-    tqdm_iterator = tqdm(csv_reader, total=total_rows, desc="Downloading Images")
+
+    # Reverse the order of rows,, remove if needed
+    reversed_csv_reader = reversed(list(csv_reader))
+
+    tqdm_iterator = tqdm(reversed_csv_reader, total=total_rows, desc="Downloading Images")
 
     for row in tqdm_iterator:
         # Skip rows with missing ID or profile_image
