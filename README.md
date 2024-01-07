@@ -21,7 +21,6 @@
 ## Usage
 
 1. **Install Dependencies:**
-   Ensure that you have Python 3.x installed on your system. Additionally, install the required Python packages using the following commands:
 
    gallery-dl
      ```bash
@@ -32,17 +31,17 @@
      pip install tqdm
      ```
 
-3. **Clone the Repository**
+2. **Clone the Repository**
      ```bash
      git clone https://github.com/royspace/twitter-following-list-exporter.git
      ```
 
-4. **Navigate to the Repository**
+3. **Navigate to the Repository**
      ```bash
      cd twitter-following-list-exporter
      ```
 
-5. **Suggestion `config.json` file for gallery-dl**
+4. **Suggestion `config.json` file for gallery-dl**
    - You **must** create a `config.json` file and enter your `YourUsername` and `YourPassword` to export your following list. For more details and instructions: [click here](https://github.com/mikf/gallery-dl?tab=readme-ov-file#configuration)
      ```json
      {
@@ -60,7 +59,7 @@
      }
      ```
 
-6. Export to TXT, CSV and HTML file
+5. Export to TXT, CSV and HTML file
 - Fill `YourUsername`
 
      ```bash
