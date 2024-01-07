@@ -4,6 +4,15 @@ import requests
 from jinja2 import Environment, FileSystemLoader
 from tqdm import tqdm
 
+
+# ANSI escape codes for colors
+GREEN = '\033[92m'
+RED = '\033[91m'
+BLUE = '\033[94m'
+ENDC = '\033[0m'
+
+errors = []
+
 # Function to download profile images
 def download_image(image_url, image_path):
     try:
@@ -14,7 +23,8 @@ def download_image(image_url, image_path):
                 file.write(chunk)
         return True
     except requests.exceptions.RequestException as e:
-        print(f"Error downloading image: {e}")
+        # print(f"Error downloading image: {e}")
+        errors.append(str(e))
         return False
 
 # Read CSV file
@@ -41,7 +51,7 @@ with open(csv_file, 'r', encoding='utf-8') as file:
     # Reverse the order of rows,, remove if needed
     reversed_csv_reader = reversed(list(csv_reader))
 
-    tqdm_iterator = tqdm(reversed_csv_reader, total=total_rows, desc="Downloading Images")
+    tqdm_iterator = tqdm(reversed_csv_reader, total=total_rows, desc="Downloading Images", unit=' images')
 
     for row in tqdm_iterator:
         # Skip rows with missing ID or profile_image
@@ -71,9 +81,20 @@ with open(csv_file, 'r', encoding='utf-8') as file:
         # Append the updated row to the CSV data
         csv_data.append(row)
 
+
 # Render HTML using Jinja2 template
 html_output = template.render(data=csv_data)
 
 # Save HTML output to a file
 with open('twitter_following_list_v2.html', 'w', encoding='utf-8') as output_file:
     output_file.write(html_output)
+
+# Determine the status emoji and message based on the presence of failed URLs
+status_emoji = GREEN + "✅" + ENDC if not errors else RED + "❌" + ENDC
+status_message = GREEN + "DONE" + ENDC if not errors else RED + "Done but something wrong!!" + ENDC
+
+print(f"\n{status_emoji} {status_message}\n")
+
+# Print total errors only if there are errors
+if errors:
+    print(f"Total url errors encountered when trying download: {RED}{len(errors)}{ENDC}")

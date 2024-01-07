@@ -6,7 +6,7 @@
 body {
     background-color: #1e1e1e;
     margin: 0; /* Remove default margin */
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     align-items: center;
     text-align: center;
 }
@@ -122,15 +122,51 @@ h1 {
 
 
 /* Add additional styling as needed */
-.name {
+.nick {
     font-size: 18px; /* Adjust font size */
     font-weight: bold;
     text-align: center;
     color:aquamarine;
+    margin-bottom: 0 !important;
+}
+
+.name {
+    font-size: 12px;
+    font-weight: normal;
+    text-align: center;
+    color: gray;
+    margin-top: 0 !important;
+}
+
+.date_icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    text-align: left;
+    float: left;
+    color: whitesmoke;
+    margin-right: 7px;
+}
+
+.date_icon path {
+    fill: whitesmoke;
+}
+
+.fl {
+    display: flex;
+    gap: 20px;
+}
+
+.post  {
+    display: flex;
+    direction: row;
+    justify-content: space-between;
+    margin: 0 5px 0 5px;
+
 }
 
 p {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 a, a:visited, a:hover {

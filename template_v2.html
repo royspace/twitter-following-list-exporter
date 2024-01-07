@@ -36,19 +36,25 @@
             </a>
             <div class="profile-info">
                 <a href="{{ row['Permanent_Profile_Link'] }} " target="_blank">
-                    <p class="name">{{ row['nick'] }} | {{ row['name'] }}</p>
+                    <p class="nick">{{ row['nick'] }}</p>
+                    <p class="name">@{{ row['name'] }}</p>
                 </a>
                 <div class="hidden-content">
                     <p class="id"><strong>ID:</strong> {{ row['id']|int }}</p>
-                    <p class="description"><strong>Description:</strong> {{ row['description'] }}</p>
-                    <p class="date"><strong>Date:</strong> {{ row['date'] }}</p>
-                    <p class="favourites_count"><strong>Favourites Count:</strong> {{ row['favourites_count'] }}</p>
-                    <p class="followers_count"><strong>Followers Count:</strong> {{ row['followers_count'] }}</p>
-                    <p class="friends_count"><strong>Friends Count:</strong> {{ row['friends_count'] }}</p>
-                    <p class="statuses_count"><strong>Statuses Count:</strong> {{ row['statuses_count'] }}</p>
-                    <p class="listed_count"><strong>Listed Count:</strong> {{ row['listed_count'] }}</p>
-                    <p class="media_count"><strong>Media Count:</strong> {{ row['media_count'] }}</p>
-                    <p class="listed_count"><strong>Listed Count:</strong> {{ row['listed_count'] }}</p>
+                    <p class="description">{{ row['description'] }}</p>
+                    <div class="date_line">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="date_icon"><g><path d="M7 4V3h2v1h6V3h2v1h1.5C19.89 4 21 5.12 21 6.5v12c0 1.38-1.11 2.5-2.5 2.5h-13C4.12 21 3 19.88 3 18.5v-12C3 5.12 4.12 4 5.5 4H7zm0 2H5.5c-.27 0-.5.22-.5.5v12c0 .28.23.5.5.5h13c.28 0 .5-.22.5-.5v-12c0-.28-.22-.5-.5-.5H17v1h-2V6H9v1H7V6zm0 6h2v-2H7v2zm0 4h2v-2H7v2zm4-4h2v-2h-2v2zm0 4h2v-2h-2v2zm4-4h2v-2h-2v2z"></path></g></svg>
+                        <p class="date"><strong>Joined</strong> {{ row['date'] }}</p>
+                    </div>
+                    <div class="fl">
+                        <p class="friends_count"><strong>{{ row['friends_count'] }}</strong> Following</p>
+                        <p class="followers_count"><strong>{{ row['followers_count'] }}</strong> Followers</p>
+                    </div>
+                    <div class="post">
+                        <p class="statuses_count">{{ row['statuses_count'] }} Posts</p>
+                        <p class="media_count">{{ row['media_count'] }} Media</p>
+                        <p class="favourites_count">{{ row['favourites_count'] }} Likes</p>
+                    </div>
                     <div class="social-links">
                         <p class="url"><a href="{{ row['url'] }}" target="_blank">{{ row['url'] }}</a></p>
                     </div>
