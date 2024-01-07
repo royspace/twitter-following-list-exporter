@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Following List</title>
+    <link rel="stylesheet" href="css/style_v2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-flash.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/hidden.js"></script>
+    <script src="js/trim.js"></script>
+    <script src="https://kit.fontawesome.com/cf21cfd488.js" crossorigin="anonymous"></script></head>
+<body>
+    <header>
+        <h1>Following List V2</h1>
+        <div class="box">
+            <form name="search">
+                <input type="text" id="searchInput" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
+            </form>
+            <i class="fas fa-search"></i>
+        </div>
+        <!-- <button id="toggleAll">Toggle All</button> -->
+        <label class="switch" id="toggleAll">
+            <input type="checkbox" id="toggleSwitch">
+            <span class="slider"></span>
+        </label>
+    </header>
+    <div id="profileContainer" class="profile-container">
+        {% for row in data %}
+        <div class="profile-card">
+            <a href="#" onclick="toggleVisibility(this); return false;">
+                <img class="profile-picture" src="{{ row['profile_image'] }}" alt="Profile Picture" onerror="handleImageError(this)">
+            </a>
+            <div class="profile-info">
+                <a href="{{ row['Permanent_Profile_Link'] }} " target="_blank">
+                    <p class="name">{{ row['nick'] }} | {{ row['name'] }}</p>
+                </a>
+                <div class="hidden-content">
+                    <p class="id"><strong>ID:</strong> {{ row['id']|int }}</p>
+                    <p class="description"><strong>Description:</strong> {{ row['description'] }}</p>
+                    <p class="date"><strong>Date:</strong> {{ row['date'] }}</p>
+                    <p class="favourites_count"><strong>Favourites Count:</strong> {{ row['favourites_count'] }}</p>
+                    <p class="followers_count"><strong>Followers Count:</strong> {{ row['followers_count'] }}</p>
+                    <p class="friends_count"><strong>Friends Count:</strong> {{ row['friends_count'] }}</p>
+                    <p class="statuses_count"><strong>Statuses Count:</strong> {{ row['statuses_count'] }}</p>
+                    <p class="listed_count"><strong>Listed Count:</strong> {{ row['listed_count'] }}</p>
+                    <p class="media_count"><strong>Media Count:</strong> {{ row['media_count'] }}</p>
+                    <p class="listed_count"><strong>Listed Count:</strong> {{ row['listed_count'] }}</p>
+                    <div class="social-links">
+                        <p class="url"><a href="{{ row['url'] }}" target="_blank">{{ row['url'] }}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>
