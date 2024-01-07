@@ -5,10 +5,12 @@
 
 ## Features
 
-- Export your following list on Twitter to TXT, CSV, HTML formats in case your Twitter/X account is suspended with no cost :)
+- Export your following list on Twitter to TXT, CSV, and HTML formats in case your Twitter/X account is suspended at no cost :)
 - Easy to use and update the following list.
 - Easy to keep track in case your following changes username or is suspended
-<img width="701" alt="293262295-f6ad7280-870f-4b03-aded-ec7c11b36ae2" src="https://github.com/royspace/twitter-following-list-exporter/assets/85507215/d05e95c0-955b-47f1-8652-b98d6b74b33a">
+- **Beautiful HTML for Visualization with ***isotope*** search and ***Mansory*** layout**
+
+<img width="800" alt="Screenshot 2024-01-08 at 02 17 58" src="https://github.com/royspace/twitter-following-list-exporter/assets/85507215/74157e60-d8ae-4f12-8c92-51a3aa017db1">
 
 ## Requirements
 
@@ -66,16 +68,19 @@
      gallery-dl --get-urls -g https://twitter.com/YourUsername/following > twitter_following_list_converted.txt
      python3 twitter-following-list-exporter.py
      python3 twitter-following-list-exporter-html.py
+     python3 convert_v2.py
      ```
+
+
 - Run this command again to keep the file up to date
 - File will include:
 
 `Target_Url` | `Permanent_Profile_Link` |	`date` | `description` | `favourites_count` | `followers_count` | `friends_count` | `id` | `listed_count` | `location` | `media_count` | `name` | `nick` | `profile_banner` | `profile_image` | `statuses_count` | `url` | `verified`
 ![291020178-65c62b17-f7f1-41b5-a36e-90f069fe98cf](https://github.com/royspace/twitter-following-list-exporter/assets/85507215/20323926-56a4-4204-8444-c260d27c9954)
-
+<img width="800" alt="293262295-f6ad7280-870f-4b03-aded-ec7c11b36ae2" src="https://github.com/royspace/twitter-following-list-exporter/assets/85507215/d05e95c0-955b-47f1-8652-b98d6b74b33a">
 
 ## Note
-- There may be failed URLs at the moment, copy and paste them to CSV file to avoid showing them next time.
+- There may be failed URLs at the moment, copy and paste them to a CSV file to avoid showing them next time.
 - Ensure that the number displayed in the tqdm progress bar is correct.
 - There may be rate limits imposed by Twitter, so let the process run in the background.
 - Since this repository relies on gallery-dl to fetch data, if there are errors during the execution of the gallery-dl command, please report the issue to them instead of here.
