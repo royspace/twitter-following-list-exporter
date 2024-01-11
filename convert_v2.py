@@ -4,7 +4,6 @@ import requests
 from jinja2 import Environment, FileSystemLoader
 from tqdm import tqdm
 
-
 # ANSI escape codes for colors
 GREEN = '\033[92m'
 RED = '\033[91m'
@@ -81,7 +80,6 @@ with open(csv_file, 'r', encoding='utf-8') as file:
         # Append the updated row to the CSV data
         csv_data.append(row)
 
-
 # Render HTML using Jinja2 template
 html_output = template.render(data=csv_data)
 
@@ -91,7 +89,7 @@ with open('twitter_following_list_v2.html', 'w', encoding='utf-8') as output_fil
 
 # Determine the status emoji and message based on the presence of failed URLs
 status_emoji = GREEN + "✅" + ENDC if not errors else RED + "❌" + ENDC
-status_message = GREEN + "DONE" + ENDC if not errors else RED + "Done but something wrong!!" + ENDC
+status_message = GREEN + "DONE (V2)" + ENDC if not errors else RED + "Done but something wrong!!" + ENDC
 
 print(f"\n{status_emoji} {status_message}\n")
 
