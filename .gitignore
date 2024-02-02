@@ -3,4 +3,6 @@
 twitter_following_list.html
 twitter_following_list_v2.html
 test
-images
+images/*
+!images/0.png
+.DS_Store
