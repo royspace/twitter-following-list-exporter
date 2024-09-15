@@ -8,6 +8,8 @@
 - Export your following list on Twitter to TXT, CSV, and HTML formats in case your Twitter/X account is suspended at no cost :)
 - Easy to use and update the following list.
 - Easy to keep track in case your following changes username or is suspended
+- Save PFP image locally
+
 - **Beautiful HTML for Visualization with ***isotope*** search and ***Mansory*** layout**
 
 <img width="800" alt="Screenshot 2024-01-08 at 02 17 58" src="https://github.com/royspace/twitter-following-list-exporter/assets/85507215/74157e60-d8ae-4f12-8c92-51a3aa017db1">
