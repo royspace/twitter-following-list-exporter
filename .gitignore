@@ -6,3 +6,4 @@ test
 images/*
 !images/0.png
 .DS_Store
+arc.sqlite3
