@@ -65,8 +65,8 @@
 - Fill `YourUsername`
 
      ```bash
-     gallery-dl -g https://twitter.com/YourUsername/following > twitter_following_list.txt
-     gallery-dl --get-urls -g https://twitter.com/YourUsername/following > twitter_following_list_converted.txt
+     gallery-dl -g https://x.com/YourUsername/following > twitter_following_list.txt
+     gallery-dl --get-urls -g https://x.com/YourUsername/following > twitter_following_list_converted.txt
      python3 twitter-following-list-exporter.py
      python3 twitter-following-list-exporter-html.py
      python3 convert_v2.py
