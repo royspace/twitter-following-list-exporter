@@ -1,62 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twitter Following List</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Twitter Following List</title>
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<script
+			type="text/javascript"
+			charset="utf8"
+			src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"
+		></script>
+		<script type="text/javascript" src="js/script.js"></script>
+		<style>
+			tr {
+				max-height: 100px; /* Set max height for the table row */
+				overflow: hidden;
+			}
 
-<table class="table" id="main_table">
-    <h1 style="align-items: center;">Following List</h1>
-    <thead>
-        <tr>
-            <th>PFP</th>
-            <th>Name</th>
-            <th>Nick</th>
-            <th>Description</th>
-            <th>Profile Banner</th>
-            <th>ID</th>
-            <th>Followers Count</th>
-            <th>Friends Count</th>
-            <th>Listed Count</th>
-            <th>Statuses Count</th>
-            <th>Media Count</th>
-            <th>Favourites Count</th>
-            <th>Date</th>
-            <th>Location</th>
-            <th>URL</th>
-            <th>Verified</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in data %}
-        <tr>
-            <td class="profile_image"><img src="{{ row['profile_image'] }}" alt="Profile Image"></td>
-            <td class="name"><a href="{{ row['Permanent_Profile_Link'] }}" target="_blank">{{ row['name'] }}</a></td>
-            <td class="nick">{{ row['nick'] }}</td>
-            <td class="description">{{ row['description'] }}</td>
-            <td class="profile_banner"><img src="{{ row['profile_banner'] }}" alt="Profile Banner"></td>
-            <td class="id">{{ row['id'] }}</td>
-            <td class="followers_count">{{ row['followers_count'] }}</td>
-            <td class="friends_count">{{ row['friends_count'] }}</td>
-            <td class="listed_count">{{ row['listed_count'] }}</td>
-            <td class="statuses_count">{{ row['statuses_count'] }}</td>
-            <td class="media_count">{{ row['media_count'] }}</td>
-            <td class="favourites_count">{{ row['favourites_count'] }}</td>
-            <td class="date">{{ row['date'] }}</td>
-            <td class="location">{{ row['location'] }}</td>
-            <td class="url">{{ row['url'] }}</td>
-            <td class="verified">{{ row['verified'] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+			td {
+				max-height: 100px; /* Set max height for table cells */
+				overflow: hidden;
+				text-overflow: ellipsis; /* Add ellipsis if text is too long */
+				white-space: wrap; /* text wrapping */
+			}
 
-</body>
+			img {
+				max-height: 100px; /* Set max height for images */
+				width: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<table class="table" id="main_table">
+			<h1 style="align-items: center">Following List</h1>
+			<thead>
+				<tr>
+					<th>PFP</th>
+					<th>Name</th>
+					<th>Nick</th>
+					<th>Description</th>
+					<th>Profile Banner</th>
+					<th>ID</th>
+					<th>Followers Count</th>
+					<th>Friends Count</th>
+					<th>Listed Count</th>
+					<th>Statuses Count</th>
+					<th>Media Count</th>
+					<th>Favourites Count</th>
+					<th>Date</th>
+					<th>Location</th>
+					<th>URL</th>
+					<th>Verified</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in data %}
+				<tr>
+					<td class="profile_image">
+						<img
+							src="{{ row['profile_image'] }}"
+							alt="Profile Image"
+						/>
+					</td>
+					<td class="name">
+						<a
+							href="{{ row['Permanent_Profile_Link'] }}"
+							target="_blank"
+							>{{ row['name'] }}</a
+						>
+					</td>
+					<td class="nick">{{ row['nick'] }}</td>
+					<td class="description">{{ row['description'] }}</td>
+					<td class="profile_banner">
+						<img
+							src="{{ row['profile_banner'] }}"
+							alt="Profile Banner"
+						/>
+					</td>
+					<td class="id">{{ row['id'] }}</td>
+					<td class="followers_count">
+						{{ row['followers_count'] }}
+					</td>
+					<td class="friends_count">{{ row['friends_count'] }}</td>
+					<td class="listed_count">{{ row['listed_count'] }}</td>
+					<td class="statuses_count">{{ row['statuses_count'] }}</td>
+					<td class="media_count">{{ row['media_count'] }}</td>
+					<td class="favourites_count">
+						{{ row['favourites_count'] }}
+					</td>
+					<td class="date">{{ row['date'] }}</td>
+					<td class="location">{{ row['location'] }}</td>
+					<td class="url">{{ row['url'] }}</td>
+					<td class="verified">{{ row['verified'] }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
 </html>
