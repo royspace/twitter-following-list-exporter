@@ -4,7 +4,7 @@
 
 ## NOTES!
 - This is a personal project, so it might be a bit clumsy.
-- There may currently be duplicates and performance issues. I’ll fix them when I have time.
+- There may be duplicates and performance issues. I’ll fix them when I have time.
 
 ## Features
 
