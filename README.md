@@ -2,6 +2,9 @@
 
 <a href="https://www.buymeacoffee.com/royspace" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
+## NOTES!
+- This is a personal project, so it might be a bit clumsy.
+- There may currently be duplicates and performance issues. I’ll fix them when I have time.
 
 ## Features
 
