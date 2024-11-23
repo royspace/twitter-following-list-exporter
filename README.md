@@ -11,7 +11,7 @@
 - Export your following list on Twitter to TXT, CSV, and HTML formats in case your Twitter/X account is suspended at no cost :)
 - Easy to use and update the following list.
 - Easy to keep track in case your following changes username or is suspended
-- Save PFP image locally
+- Save PFP locally
 
 - **Beautiful HTML for Visualization with ***isotope*** search and ***Mansory*** layout**
 
