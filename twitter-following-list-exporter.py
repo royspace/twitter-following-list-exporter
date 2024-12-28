@@ -4,7 +4,7 @@ import subprocess
 from tqdm import tqdm
 import os
 
-# ANSI escape codes for colors
+# ANSI colors
 GREEN = '\033[92m'
 RED = '\033[91m'
 BLUE = '\033[94m'
@@ -17,18 +17,24 @@ url_file_path = "twitter_following_list_converted.txt"
 csv_file_path = "twitter_following_list_data.csv"
 
 def run_gallery_dl(target_url):
-    # Run gallery-dl command and capture JSON output
+    # capture JSON output
     command = f'gallery-dl --range 0 -j "{target_url}"'
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     return result.stdout.strip()
 
 def extract_author_info(json_data):
-    # Extract relevant author information from JSON data
     try:
-        data = json.loads(json_data)
+        if isinstance(json_data, str):
+            data = json.loads(json_data)
+        elif isinstance(json_data, (list, dict)):
+            data = json_data
+        else:
+            raise ValueError("Invalid JSON data format")
+
+        # Access
         author_info = data[0][1]['author']
         return author_info
-    except (json.JSONDecodeError, KeyError, IndexError):
+    except (json.JSONDecodeError, KeyError, IndexError, ValueError) as e:
         return None
 
 def get_existing_urls(csv_file):
