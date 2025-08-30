@@ -55,6 +55,14 @@ def convert_url(url):
     user_id = parts[-1].split('/')[0]
     return f"https://twitter.com/i/user/{user_id}"
 
+def get_id_from_url(url: str) -> str:
+    try:
+        parts = url.split(':')
+        user_id = parts[-1].split('/')[0]
+        return str(user_id)
+    except Exception:
+        return ""
+
 def save_to_csv(target_url, author_info):
     # Save author information to CSV file
     with open(csv_file_path, 'a', newline='', encoding='utf-8') as csvfile:
@@ -83,20 +91,26 @@ if __name__ == "__main__":
         for target_url in tqdm(url_file, desc="Processing URLs", unit="URL", total=total_lines):
             target_url = target_url.strip()
 
+            # Fast-skip by ID parsed from URL if already present
+            parsed_id = get_id_from_url(target_url)
+            if parsed_id and parsed_id in existing_ids:
+                skipped_urls_count += 1
+                continue
+
             json_data = run_gallery_dl(target_url)
             author_info = extract_author_info(json_data)
 
-            if author_info:
-                author_id = str(author_info.get('id', '')).strip()
-                if author_id and author_id not in existing_ids:
-                    save_to_csv(target_url, author_info)
-                    existing_ids.add(author_id)
-                    new_rows_count += 1
-                else:
-                    skipped_urls_count += 1
-            else:
-                # print(f"Failed to extract author info from {target_url}")
+            if not author_info:
                 failed_urls.append(target_url)
+                continue
+
+            author_id = str(author_info.get('id', '')).strip()
+            if author_id and author_id not in existing_ids:
+                save_to_csv(target_url, author_info)
+                existing_ids.add(author_id)
+                new_rows_count += 1
+            else:
+                skipped_urls_count += 1
 
     # Status text
     status_emoji = GREEN + "✅" + ENDC if not failed_urls else RED + "❌" + ENDC
