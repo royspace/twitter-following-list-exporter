@@ -98,10 +98,27 @@ with open('twitter_following_list.html', 'w', encoding='utf-8') as output_file:
 
 # Determine the status emoji and message based on the presence of failed URLs
 status_emoji = GREEN + "✅" + ENDC if not errors else RED + "❌" + ENDC
-status_message = GREEN + "DONE (V1)" + ENDC if not errors else RED + "Done but something wrong!!" + ENDC
+status_message = GREEN + "DONE" + ENDC if not errors else RED + "Done but something wrong!!" + ENDC
 
 print(f"\n{status_emoji} {status_message}\n")
 
 # Print total errors only if there are errors
 if errors:
     print(f"Total url errors encountered when trying download: {RED}{len(errors)}{ENDC}")
+
+# Ask to open the generated HTML
+try:
+    choice = input("Open the generated HTML file now? [y/N]: ").strip().lower()
+    if choice in ("y", "yes"):
+        import webbrowser
+        from pathlib import Path
+
+        html_path = Path('twitter_following_list.html').resolve()
+        opened = webbrowser.open(html_path.as_uri())
+        if opened:
+            print(f"Opened: {BLUE}{html_path}{ENDC}")
+        else:
+            print(f"Could not automatically open. Please open manually: {BLUE}{html_path}{ENDC}")
+except (EOFError, KeyboardInterrupt):
+    # Non-interactive or aborted; just skip
+    pass
