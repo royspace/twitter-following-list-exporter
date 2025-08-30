@@ -3,12 +3,17 @@ import os
 import requests
 from jinja2 import Environment, FileSystemLoader
 from tqdm import tqdm
+import argparse
 
 # ANSI escape codes for colors
 GREEN = '\033[92m'
 RED = '\033[91m'
 BLUE = '\033[94m'
 ENDC = '\033[0m'
+
+parser = argparse.ArgumentParser(description="Export Twitter following list to HTML")
+parser.add_argument("--no-pfp", action="store_true", help="Do not download or include profile pictures")
+args = parser.parse_args()
 
 errors = []
 
@@ -68,14 +73,16 @@ with open(csv_file, 'r', encoding='utf-8') as file:
         image_filename = f"{row['id']}.jpg"
         image_path = os.path.join(image_folder, image_filename)
 
-        if image_filename not in downloaded_image_ids and not os.path.exists(image_path):
-            # Download the image
-            success = download_image(row['profile_image'], image_path)
-            if success:
-                downloaded_image_ids.add(image_filename)
+        if not args.no_pfp:
+            if image_filename not in downloaded_image_ids and not os.path.exists(image_path):
+                # Download the image
+                success = download_image(row['profile_image'], image_path)
+                if success:
+                    downloaded_image_ids.add(image_filename)
 
-        # Update the row to use local image path
-        row['profile_image'] = image_path if os.path.exists(image_path) else row['profile_image']
+        # Update the row to use local image path unless --no-pfp is set
+        if not args.no_pfp:
+            row['profile_image'] = image_path if os.path.exists(image_path) else row['profile_image']
 
         # Append the updated row to the CSV data
         csv_data.append(row)

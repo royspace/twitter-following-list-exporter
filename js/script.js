@@ -12,6 +12,9 @@ $(document).ready(function () {
         .appendTo('#main_table thead');
     
     var table = $('#main_table').DataTable({
+        scrollX: true,
+        fixedHeader: true,
+        autoWidth: false,
         orderCellsTop: true,
         fixedHeader: true,
         aLengthMenu: [
@@ -67,6 +70,18 @@ $(document).ready(function () {
                                 .setSelectionRange(cursorPosition, cursorPosition);
                         });
                 });
+            // Recalculate column widths after building filter row (fix header/body misalignment with scrollX)
+            setTimeout(function(){
+                api.columns.adjust();
+            }, 0);
         },
+    });
+    // Keep header/body column widths aligned with scrollX on various events
+    table.columns.adjust();
+    $(window).on('resize.dt', function(){dataTables_filter
+        table.columns.adjust();
+    });
+    table.on('column-visibility.dt draw.dt responsive-resize.dt', function(){
+        table.columns.adjust();
     });
 });
