@@ -63,19 +63,76 @@ def get_id_from_url(url: str) -> str:
     except Exception:
         return ""
 
+def ensure_csv_schema(path: str, fixed_fields):
+    """Ensure CSV header matches fixed_fields. If not, rewrite with union schema.
+    Adds missing fields (filled with empty string) and ignores extras.
+    """
+    if not os.path.exists(path):
+        return
+    with open(path, 'r', encoding='utf-8', newline='') as f:
+        reader = csv.DictReader(f)
+        existing_fields = reader.fieldnames or []
+        if existing_fields == fixed_fields:
+            return
+        rows = list(reader)
+    tmp_path = path + ".schema.tmp"
+    with open(tmp_path, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fixed_fields, extrasaction='ignore', restval='')
+        writer.writeheader()
+        for row in rows:
+            out = {k: row.get(k, '') for k in fixed_fields}
+            writer.writerow(out)
+    bak_path = path + ".schema.bak"
+    if os.path.exists(bak_path):
+        os.remove(bak_path)
+    os.replace(path, bak_path)
+    os.replace(tmp_path, path)
+
+
 def save_to_csv(target_url, author_info):
-    # Save author information to CSV file
+    # Stable schema: keep header fixed to avoid order drift or new keys breaking CSV
+    FIXED_FIELDS = [
+        'Target_URL',
+        'Permanent_Profile_Link',
+        'date',
+        'description',
+        'favourites_count',
+        'followers_count',
+        'friends_count',
+        'id',
+        'listed_count',
+        'location',
+        'media_count',
+        'name',
+        'nick',
+        'profile_banner',
+        'profile_image',
+        'protected',
+        'statuses_count',
+        'url',
+        'verified',
+    ]
+
+    # Make sure existing CSV (if any) has this schema
+    ensure_csv_schema(csv_file_path, FIXED_FIELDS)
+
     with open(csv_file_path, 'a', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['Target_URL', 'Permanent_Profile_Link'] + list(author_info.keys())
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer = csv.DictWriter(
+            csvfile,
+            fieldnames=FIXED_FIELDS,
+            extrasaction='ignore',  # ignore unexpected keys in author_info
+            restval=''  # emit empty for missing values
+        )
 
         # Write header only if the file is empty
         if csvfile.tell() == 0:
             writer.writeheader()
 
-        # Convert the target_url and author_info to CSV
         converted_url = convert_url(target_url)
-        writer.writerow({'Target_URL': target_url, 'Permanent_Profile_Link': converted_url, **author_info})
+        row = {k: author_info.get(k, '') for k in FIXED_FIELDS}
+        row['Target_URL'] = target_url
+        row['Permanent_Profile_Link'] = converted_url
+        writer.writerow(row)
 
 if __name__ == "__main__":
     existing_ids = get_existing_ids(csv_file_path)
