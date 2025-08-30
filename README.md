@@ -13,10 +13,6 @@
 - Easy to keep track in case your following changes username or is suspended
 - Save PFP locally
 
-- **Beautiful HTML for Visualization with ***isotope*** search and ***Mansory*** layout**
-
-<img width="800" alt="Screenshot 2024-01-08 at 02 17 58" src="https://github.com/royspace/twitter-following-list-exporter/assets/85507215/74157e60-d8ae-4f12-8c92-51a3aa017db1">
-
 ## Requirements
 
 - Python 3.x
@@ -48,12 +44,16 @@
 
 4. **Suggestion `config.json` file for gallery-dl**
    - You **must** create a `config.json` file and enter your `YourUsername` and `YourPassword` to export your following list. For more details and instructions: [click here](https://github.com/mikf/gallery-dl?tab=readme-ov-file#configuration)
+   - Alternative: use a cookies file or cookies from the browser, please remove the **#** for the option you want to use
+   - **Or**, Just add `--cookies-from Chrome` right after gallery-dl command and it will work most of the time
      ```json
      {
          "extractor": {
              "twitter": {
-                 "username": "YourUsername",
-                 "password": "YourPassword",
+                 "#username": "YourUsername",
+                 "#password": "YourPassword",
+                 "#cookies": "/path/to/your/cookie/file.txt",
+                 "cookies": ["Chrome"],
                  "filename": "{author['name']}-{author['id']}-{tweet_id}-{num}-{date:?//%Y%m%d_%H%M%S}.{extension}",
                  "skip": "abort:2"
              }
@@ -65,14 +65,13 @@
      ```
 
 5. Export to TXT, CSV and HTML file
-- Fill `YourUsername`
+- Fill `YourUsername`, Please don't change the output filename
 
      ```bash
      gallery-dl -g https://x.com/YourUsername/following > twitter_following_list.txt
      gallery-dl --get-urls -g https://x.com/YourUsername/following > twitter_following_list_converted.txt
      python3 twitter-following-list-exporter.py
      python3 twitter-following-list-exporter-html.py
-     python3 convert_v2.py
      ```
 
 
