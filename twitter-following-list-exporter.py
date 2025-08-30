@@ -81,7 +81,7 @@ if __name__ == "__main__":
         total_lines = sum(1 for line in url_file)  # Count total lines in the file
         url_file.seek(0)  # Reset file pointer to the beginning
 
-        # Use tqdm to create a progress bar
+        # Progress bar
         for target_url in tqdm(url_file, desc="Processing URLs", unit="URL", total=total_lines):
             target_url = target_url.strip()
             
@@ -98,14 +98,14 @@ if __name__ == "__main__":
             else:
                 skipped_urls_count += 1
 
-    # Determine the status emoji and message based on the presence of failed URLs
+    # Status text
     status_emoji = GREEN + "✅" + ENDC if not failed_urls else RED + "❌" + ENDC
     status_message = GREEN + "DONE" + ENDC if not failed_urls else RED + "Done but something wrong!!" + ENDC
 
-    # Print the final status message with colored numbers and blue save path
+    # Updated text
     print(f"\n{status_emoji} {status_message}\nTwitter Following List Data has been updated in {BLUE}{csv_file_path}{ENDC}.\n{GREEN}{new_rows_count}{ENDC} URLs added.\n{GREEN}{skipped_urls_count}{ENDC} URLs already exist in the CSV file.\n{RED}{len(failed_urls)}{ENDC} URLs failed.")
 
-    # Print the list of failed URLs
+    # Llist of failed URLs
     if failed_urls:
         print("\nFailed URLs (Copy and paste them to CSV file to avoid showing them next time):")
         for failed_url in failed_urls:
