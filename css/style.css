@@ -1,5 +1,7 @@
 body {
 	font-family: "Open Sans", sans-serif;
+	background: #ffffff;
+	color: #111111;
 }
 
 #main_table {
@@ -8,20 +10,20 @@ body {
 
 #main_table_length,
 .dataTables_filter {
-  margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 @media (max-width: 768px) {
-  #main_table_length,
-  .dataTables_filter {
-    margin-bottom: 12px;
-  }
+	#main_table_length,
+	.dataTables_filter {
+		margin-bottom: 12px;
+	}
 }
 
 th,
 tr,
 td {
-	border: 1px solid black;
+	border: 1px solid #000000;
 	border-collapse: collapse;
 }
 
@@ -68,4 +70,121 @@ a {
 	text-decoration: none;
 	color: darkgreen;
 	font: bold;
+}
+
+/* Page header with dark mode toggle */
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	margin: 8px 0 12px 0;
+}
+
+#darkModeToggle {
+	padding: 6px 10px;
+	border: 1px solid #c9c9c9;
+	border-radius: 6px;
+	background: #f6f6f6;
+	cursor: pointer;
+}
+
+/* Dark theme overrides */
+body.dark {
+	background: #0f1115;
+	color: #e6e6e6;
+}
+
+body.dark a {
+	color: #86efac;
+}
+
+body.dark th,
+body.dark tr,
+body.dark td {
+	border-color: #2a2f3a;
+}
+
+/* DataTables basics in dark */
+body.dark table.dataTable thead th,
+body.dark table.dataTable thead td {
+	background-color: #171a21;
+	color: #e6e6e6;
+}
+
+/* DataTables body rows in dark */
+body.dark table.dataTable,
+body.dark div.dataTables_scrollBody {
+	background-color: #0f1115;
+}
+
+body.dark table.dataTable tbody tr,
+body.dark table.dataTable tbody tr.odd,
+body.dark table.dataTable tbody tr.even {
+	background-color: #0f1115;
+	color: #e6e6e6;
+}
+
+body.dark table.dataTable tbody tr:hover {
+	background-color: #151923;
+}
+
+/* Selected rows (if using Select extension) */
+body.dark table.dataTable tbody tr.selected,
+body.dark table.dataTable tbody tr.selected:hover {
+	background-color: #1f2937;
+	color: #ffffff;
+}
+
+/* Borders inside DataTables in dark */
+body.dark table.dataTable tbody td,
+body.dark table.dataTable tbody th {
+	border-color: #2a2f3a;
+}
+
+/* Paginate hover in dark */
+body.dark .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+	background: #171a21 !important;
+	color: #ffffff !important;
+}
+
+body.dark .dataTables_wrapper .dataTables_filter input,
+body.dark .dataTables_wrapper .dataTables_length select {
+	background: #0f1115;
+	color: #e6e6e6;
+	border: 1px solid #2a2f3a;
+}
+
+body.dark .filters input {
+	background: #0f1115;
+	color: #e6e6e6;
+	border: 1px solid #2a2f3a;
+}
+
+body.dark .dataTables_wrapper .dataTables_paginate .paginate_button {
+	color: #e6e6e6 !important;
+	border-color: #2a2f3a;
+}
+
+body.dark .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+body.dark
+	.dataTables_wrapper
+	.dataTables_paginate
+	.paginate_button.current:hover {
+	background: #171a21 !important;
+	color: #ffffff !important;
+}
+
+body.dark #darkModeToggle {
+	background: #171a21;
+	border-color: #2a2f3a;
+	color: #e6e6e6;
+}
+
+body.dark .dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+	color: #e6e6e6;
 }

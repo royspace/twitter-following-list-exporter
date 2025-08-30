@@ -8,3 +8,4 @@ images/*
 !images/NoBanner.png
 .DS_Store
 arc.sqlite3
+*.bak

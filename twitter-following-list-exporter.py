@@ -37,19 +37,17 @@ def extract_author_info(json_data):
     except (json.JSONDecodeError, KeyError, IndexError, ValueError) as e:
         return None
 
-def get_existing_urls(csv_file):
-    # Get existing URLs from the CSV file using a set
-    existing_urls = set()
+def get_existing_ids(csv_file):
+    # Get existing IDs from the CSV file using a set
+    existing_ids = set()
     if os.path.exists(csv_file):
         with open(csv_file, 'r', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                existing_urls.add(row['Target_URL'])
-    return existing_urls
-
-def is_info_already_saved(existing_urls, target_url):
-    # Check if the information for a specific target_url already exists in the set
-    return target_url in existing_urls
+                # id field may be numeric in CSV; store as string for robust comparison
+                if 'id' in row and row['id']:
+                    existing_ids.add(str(row['id']))
+    return existing_ids
 
 def convert_url(url):
     # Convert the given URL format to the desired format
@@ -72,7 +70,7 @@ def save_to_csv(target_url, author_info):
         writer.writerow({'Target_URL': target_url, 'Permanent_Profile_Link': converted_url, **author_info})
 
 if __name__ == "__main__":
-    existing_urls = get_existing_urls(csv_file_path)
+    existing_ids = get_existing_ids(csv_file_path)
     skipped_urls_count = 0
     new_rows_count = 0
     failed_urls = []
@@ -84,19 +82,21 @@ if __name__ == "__main__":
         # Progress bar
         for target_url in tqdm(url_file, desc="Processing URLs", unit="URL", total=total_lines):
             target_url = target_url.strip()
-            
-            if not is_info_already_saved(existing_urls, target_url):
-                json_data = run_gallery_dl(target_url)
-                author_info = extract_author_info(json_data)
 
-                if author_info:
+            json_data = run_gallery_dl(target_url)
+            author_info = extract_author_info(json_data)
+
+            if author_info:
+                author_id = str(author_info.get('id', '')).strip()
+                if author_id and author_id not in existing_ids:
                     save_to_csv(target_url, author_info)
+                    existing_ids.add(author_id)
                     new_rows_count += 1
                 else:
-                    # print(f"Failed to extract author info from {target_url}")
-                    failed_urls.append(target_url)
+                    skipped_urls_count += 1
             else:
-                skipped_urls_count += 1
+                # print(f"Failed to extract author info from {target_url}")
+                failed_urls.append(target_url)
 
     # Status text
     status_emoji = GREEN + "✅" + ENDC if not failed_urls else RED + "❌" + ENDC
