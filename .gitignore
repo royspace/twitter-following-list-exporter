@@ -1,4 +1,5 @@
 *.txt
+!requirements.txt
 *.csv
 twitter_following_list.html
 twitter_following_list_v2.html
