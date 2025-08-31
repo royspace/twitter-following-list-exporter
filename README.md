@@ -3,13 +3,12 @@
 <a href="https://www.buymeacoffee.com/royspace" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ## NOTES!
-- This is a personal project, so it might be a bit clumsy.
-- There may be duplicates and performance issues. I’ll fix them when I have time.
+- I stopped maintaining HTML ver 2 since it didn’t meet real needs and upgrading it took too much effort. That’s why HTML ver 1 has been heavily improved instead.
+- Added a de-duplicate tool. If you’ve been using this script for a while, your CSV file might have duplicate IDs, so I added this tool, you just need to run it once.
 
 ## Features
-
 - Export your following list on Twitter to TXT, CSV, and HTML formats in case your Twitter/X account is suspended at no cost :)
-- Easy to use and update the following list.
+- Easy to use and update your following list.
 - Easy to keep track in case your following changes username or is suspended
 - Save PFP locally
 
@@ -17,35 +16,23 @@
 
 - Python 3.x
 - [gallery-dl](https://github.com/mikf/gallery-dl)
-- [tqdm](https://github.com/tqdm/tqdm)
 
 ## Usage
 
-1. **Install Dependencies:**
-
-   gallery-dl
-     ```bash
-     pip install gallery-dl
-     ```
-   tqdm
-     ```bash
-     pip install tqdm
-     ```
-
-2. **Clone the Repository**
+1. **Clone the Repository**
      ```bash
      git clone https://github.com/royspace/twitter-following-list-exporter.git
-     ```
-
-3. **Navigate to the Repository**
-     ```bash
      cd twitter-following-list-exporter
+     ```
+3. **Install Dependencies:**
+     ```bash
+     pip install gallery-dl
+     pip install -r requirements.txt
      ```
 
 4. **Suggestion `config.json` file for gallery-dl**
    - You **must** create a `config.json` file and enter your `YourUsername` and `YourPassword` to export your following list. For more details and instructions: [click here](https://github.com/mikf/gallery-dl?tab=readme-ov-file#configuration)
    - Alternative: use a cookies file or cookies from the browser, please remove the **#** for the option you want to use
-   - **Or**, Just add `--cookies-from Chrome` right after gallery-dl command and it will work most of the time
      ```json
      {
          "extractor": {
@@ -90,11 +77,9 @@
 
 ## Other scripts
 
-1. [export-twitter-following-list](https://github.com/prinsss/export-twitter-following-list) by [prinsss](https://github.com/prinsss)
+1. [twitter-web-exporter](https://github.com/prinsss/twitter-web-exporter) by [prinsss](https://github.com/prinsss)
 - Using a different approach by leveraging the Web API of Twitter itself.
-- Has raw JSON.
 - **NOT** easy to keep track in case your following changes username or is suspended.
-
 
 ## Contributions
 Contributions and improvements to the tool are welcome. Feel free to fork the repository, make enhancements, and submit pull requests.
