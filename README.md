@@ -31,8 +31,8 @@
      ```
 
 4. **Suggestion `config.json` file for gallery-dl**
-   - You **must** create a `config.json` file and enter your `YourUsername` and `YourPassword` to export your following list. For more details and instructions: [click here](https://github.com/mikf/gallery-dl?tab=readme-ov-file#configuration)
-   - Alternative: use a cookies file or cookies from the browser, please remove the **#** for the option you want to use
+   - You **must** create a `config.json` file. For more details and instructions: [click here](https://github.com/mikf/gallery-dl?tab=readme-ov-file#configuration)
+   - **It recommends using the cookie option**, please remove the **#** for the option you want to use
      ```json
      {
          "extractor": {
