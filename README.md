@@ -33,6 +33,7 @@
 4. **Suggestion `config.json` file for gallery-dl**
    - You **must** create a `config.json` file. For more details and instructions: [click here](https://github.com/mikf/gallery-dl?tab=readme-ov-file#configuration)
    - **It recommends using the cookie option**, please remove the **#** for the option you want to use
+   - For the cookie file, I recommend using [this extension](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)
      ```json
      {
          "extractor": {
